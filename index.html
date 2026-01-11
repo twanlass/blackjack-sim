@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <div id="app">
+        <header id="header">
+          <div>
+            <h1>Blackjack</h1>
+            <div id="stats"></div>
+          </div>
+          <div id="bankroll"></div>
+        </header>
+
+        <div id="dealer-area">
+          <h2>Dealer <span id="dealer-score"></span></h2>
+          <div id="dealer-cards" class="cards"></div>
+        </div>
+
+        <div id="player-area">
+          <h2>Player <span id="player-score"></span></h2>
+          <div id="player-hands"></div>
+        </div>
+
+        <div id="message"></div>
+
+        <div id="controls">
+          <button id="hit-btn">Hit</button>
+          <button id="stand-btn">Stand</button>
+          <button id="double-btn">Double</button>
+          <button id="split-btn">Split</button>
+          <button id="deal-btn">Deal ($10)</button>
+        </div>
+      </div>
+
+      <aside id="advisor">
+        <h3>Strategy Advisor</h3>
+        <div id="advice"></div>
+        <div id="advice-reason"></div>
+
+        <div id="strategy-reference">
+          <h4>Basic Strategy</h4>
+
+          <div class="strategy-section">
+            <strong>Always:</strong>
+            <ul>
+              <li>Hit on 8 or less</li>
+              <li>Stand on 17+</li>
+              <li>Double on 11</li>
+            </ul>
+          </div>
+
+          <div class="strategy-section">
+            <strong>vs Dealer 2-6 (weak):</strong>
+            <ul>
+              <li>Stand on 12-16</li>
+              <li>Double on 10</li>
+            </ul>
+          </div>
+
+          <div class="strategy-section">
+            <strong>vs Dealer 7-A (strong):</strong>
+            <ul>
+              <li>Hit on 12-16</li>
+            </ul>
+          </div>
+
+          <div class="strategy-section">
+            <strong>Pairs:</strong>
+            <ul>
+              <li>Always split A's & 8's</li>
+              <li>Never split 10's & 5's</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

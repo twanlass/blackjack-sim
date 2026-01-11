@@ -1,0 +1,117 @@
+# Prompt Build Log
+
+This documents the prompts used to build this project with Claude.
+
+---
+
+## 1. User prompt
+> let's build a super simple blackjack simiulator. Keep it simple w/ Vite, typescript. Render ascii cards. give the player simple controls to hit, hold, split. 
+
+## 2. User prompt
+> run it 
+
+## 3. User prompt
+> Let's add a side panel that guides the player. Here's the simple strategy we should follow. Using this, suggest the best next move for the player in the sidepanel. 
+
+Strategy: 
+The simplest strategy for blackjack (21):
+
+**Always do this:**
+- Hit on 8 or less
+- Stand on 17 or more
+- Double down on 11
+
+**Against dealer 2-6 (weak):**
+- Stand on 12-16
+- Double down on 10
+
+**Against dealer 7-A (strong):**
+- Hit on 12-16
+
+**Aces & 8s:** Always split
+**10s & 5s:** Never split
+
+That's enough to get you close to optimal play without memorizing full basic strategy charts. 
+
+## 4. User prompt
+> deal each dealer card one by one with a little delay (simulate play a little so that I can follow along)
+
+## 5. User prompt
+> how might we make the "why" fromt he strategy advisor smarter? I want to know why I should choose the suggested action
+
+## 6. User prompt
+> below the strategy advisder, always render the basic straetgy for reference: 
+Always do this:
+
+Hit on 8 or less
+Stand on 17 or more
+Double down on 11
+
+Against dealer 2-6 (weak):
+
+Stand on 12-16
+Double down on 10
+
+Against dealer 7-A (strong):
+
+Hit on 12-16
+
+Aces & 8s: Always split
+10s & 5s: Never split
+
+## 7. User prompt
+> use a sans-serif font; make it black and white. update the min fontsize to 16px
+
+## 8. User prompt
+> invert to make it dark mode
+
+## 9. User prompt
+> make the cards white w/ black text 
+
+## 10. User prompt
+> track and show win ratio 
+
+## 11. User prompt
+> visually add space between the dealers first card and flipped cards thereafter 
+
+## 12. User prompt
+> do the same for all cards other than the first face-up. For example, end game hard to tell here which card was first: 
+
+## 13. User prompt
+> introduce some basic betting / $  to so we can learn the double strategy. Auto-bet at game start to keep it simple. 
+
+## 14. User prompt
+> refac the ui layout a bit to keep everything on one page with scroll. see screenshot. 
+
+## 15. User prompt
+> left align these elements: 
+
+## 16. User prompt
+> move bet / $ to top right: 
+
+## 17. User prompt
+> align the stat advisor top to the top of the dealer card board: 
+
+## 18. User prompt
+> place the actions below the cards with 8px margin 
+
+## 19. User prompt
+> update dealer and player area div backgrounds to #305a31
+
+## 20. User prompt
+> make just the card backgrounds white, not the their whole container: 
+
+## 21. User prompt
+> remove the duplicate player score: 
+
+## 22. User prompt
+> remove the player card container 
+
+## 23. User prompt
+> update the .card-display class: remove padding; font size 16px, font-weght bold
+
+## 24. User prompt
+> set fixed heights on these containeres so they don't grow and shift the the layout when items are added and removed: 
+
+## 25. User prompt
+> turn this into a git repo. will be published publicly. Link to upstream: https://github.com/twanlass/blackjack-sim.git. Make a first commit and push. 
