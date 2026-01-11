@@ -78,6 +78,10 @@
   @apply p-2;
 }
 
+.cards {
+  @apply flex justify-center gap-1 lg:gap-2 flex-wrap;
+}
+
 .hand-score {
   @apply mt-2 font-bold text-sm;
 }
