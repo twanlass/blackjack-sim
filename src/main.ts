@@ -54,6 +54,33 @@ const adviceEl = document.getElementById('advice')!;
 const adviceReasonEl = document.getElementById('advice-reason')!;
 const statsEl = document.getElementById('stats')!;
 
+// Advisor toggle functionality for mobile
+const advisorEl = document.getElementById('advisor')!;
+const advisorToggleBtn = document.getElementById('advisor-toggle')!;
+const advisorCloseBtn = document.getElementById('advisor-close')!;
+
+function openAdvisor(): void {
+  advisorEl.classList.remove('hidden');
+  advisorEl.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAdvisor(): void {
+  advisorEl.classList.add('hidden');
+  advisorEl.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+
+advisorToggleBtn.addEventListener('click', openAdvisor);
+advisorCloseBtn.addEventListener('click', closeAdvisor);
+
+// Close advisor when clicking backdrop (mobile only)
+advisorEl.addEventListener('click', (e: MouseEvent) => {
+  if (e.target === advisorEl) {
+    closeAdvisor();
+  }
+});
+
 function updateStats(): void {
   // Only update when transitioning to complete
   if (gameState.phase === 'complete' && lastPhase !== 'complete') {

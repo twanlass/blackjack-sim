@@ -2,80 +2,113 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Blackjack</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body>
-    <div id="layout">
-      <div id="app">
-        <header id="header">
+  <body class="bg-black text-white min-h-screen font-sans m-0 p-3 lg:p-4">
+    <!-- Mobile advisor toggle button -->
+    <button
+      id="advisor-toggle"
+      class="lg:hidden fixed bottom-4 right-4 z-50 bg-gray-800 border-2 border-white rounded-full w-14 h-14 flex items-center justify-center text-2xl shadow-lg"
+      aria-label="Toggle Strategy Advisor"
+    >
+      ?
+    </button>
+
+    <!-- Main layout container -->
+    <div id="layout" class="flex flex-col lg:flex-row justify-center gap-4 lg:gap-5 max-w-5xl mx-auto min-h-[calc(100vh-24px)] lg:min-h-[calc(100vh-32px)]">
+
+      <!-- Game area -->
+      <div id="app" class="flex-1 max-w-xl lg:max-w-[600px] text-center flex flex-col mx-auto w-full">
+
+        <!-- Header -->
+        <header id="header" class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 mb-2 lg:mb-3">
           <div>
-            <h1>Blackjack</h1>
-            <div id="stats"></div>
+            <h1 class="text-xl lg:text-2xl font-bold text-left m-0">Blackjack</h1>
+            <div id="stats" class="flex flex-wrap justify-start gap-2 lg:gap-4 text-sm"></div>
           </div>
-          <div id="bankroll"></div>
+          <div id="bankroll" class="text-sm text-gray-400 text-left sm:text-right"></div>
         </header>
 
-        <div id="dealer-area">
-          <h2>Dealer <span id="dealer-score"></span></h2>
-          <div id="dealer-cards" class="cards"></div>
+        <!-- Dealer area -->
+        <div id="dealer-area" class="my-2 p-3 lg:p-4 bg-[#305a31] border border-gray-700 rounded-lg min-h-[140px] lg:min-h-[200px] flex flex-col">
+          <h2 class="text-sm lg:text-base font-bold my-1">Dealer <span id="dealer-score"></span></h2>
+          <div id="dealer-cards" class="cards flex justify-center gap-1 lg:gap-2 flex-wrap flex-1 items-center"></div>
         </div>
 
-        <div id="player-area">
-          <h2>Player <span id="player-score"></span></h2>
-          <div id="player-hands"></div>
+        <!-- Player area -->
+        <div id="player-area" class="my-2 p-3 lg:p-4 bg-[#305a31] border border-gray-700 rounded-lg min-h-[140px] lg:min-h-[200px] flex flex-col">
+          <h2 class="text-sm lg:text-base font-bold my-1">Player <span id="player-score"></span></h2>
+          <div id="player-hands" class="flex justify-center gap-3 lg:gap-5 flex-wrap flex-1 items-center"></div>
         </div>
 
-        <div id="message"></div>
+        <!-- Message display -->
+        <div id="message" class="text-lg lg:text-xl font-bold py-2 lg:py-3 min-h-[40px]"></div>
 
-        <div id="controls">
-          <button id="hit-btn">Hit</button>
-          <button id="stand-btn">Stand</button>
-          <button id="double-btn">Double</button>
-          <button id="split-btn">Split</button>
-          <button id="deal-btn">Deal ($10)</button>
+        <!-- Controls -->
+        <div id="controls" class="mt-2 flex justify-center gap-2 lg:gap-3 flex-wrap">
+          <button id="hit-btn" class="btn-action">Hit</button>
+          <button id="stand-btn" class="btn-action">Stand</button>
+          <button id="double-btn" class="btn-action">Double</button>
+          <button id="split-btn" class="btn-action">Split</button>
+          <button id="deal-btn" class="btn-primary">Deal ($10)</button>
         </div>
       </div>
 
-      <aside id="advisor">
-        <h3>Strategy Advisor</h3>
-        <div id="advice"></div>
-        <div id="advice-reason"></div>
+      <!-- Advisor sidebar / modal -->
+      <aside
+        id="advisor"
+        class="fixed inset-0 z-40 bg-black/80 hidden lg:relative lg:inset-auto lg:bg-transparent lg:block lg:w-52 lg:shrink-0"
+      >
+        <div class="absolute bottom-0 left-0 right-0 max-h-[80vh] overflow-y-auto bg-gray-900 border border-gray-700 rounded-t-2xl p-4 text-center lg:relative lg:max-h-none lg:bottom-auto lg:rounded-lg lg:mt-16">
+          <!-- Close button for mobile -->
+          <button
+            id="advisor-close"
+            class="lg:hidden absolute top-3 right-3 text-gray-400 hover:text-white text-2xl leading-none"
+            aria-label="Close advisor"
+          >
+            &times;
+          </button>
 
-        <div id="strategy-reference">
-          <h4>Basic Strategy</h4>
+          <h3 class="m-0 mb-2 text-sm lg:text-base font-bold">Strategy Advisor</h3>
+          <div id="advice" class="text-2xl lg:text-xl font-bold p-3 my-2 rounded bg-black border-2 border-white"></div>
+          <div id="advice-reason" class="text-sm leading-snug"></div>
 
-          <div class="strategy-section">
-            <strong>Always:</strong>
-            <ul>
-              <li>Hit on 8 or less</li>
-              <li>Stand on 17+</li>
-              <li>Double on 11</li>
-            </ul>
-          </div>
+          <div id="strategy-reference" class="mt-4 pt-4 border-t border-gray-700 text-left">
+            <h4 class="m-0 mb-2 text-sm text-center font-semibold">Basic Strategy</h4>
 
-          <div class="strategy-section">
-            <strong>vs Dealer 2-6 (weak):</strong>
-            <ul>
-              <li>Stand on 12-16</li>
-              <li>Double on 10</li>
-            </ul>
-          </div>
+            <div class="strategy-section">
+              <strong>Always:</strong>
+              <ul>
+                <li>Hit on 8 or less</li>
+                <li>Stand on 17+</li>
+                <li>Double on 11</li>
+              </ul>
+            </div>
 
-          <div class="strategy-section">
-            <strong>vs Dealer 7-A (strong):</strong>
-            <ul>
-              <li>Hit on 12-16</li>
-            </ul>
-          </div>
+            <div class="strategy-section">
+              <strong>vs Dealer 2-6 (weak):</strong>
+              <ul>
+                <li>Stand on 12-16</li>
+                <li>Double on 10</li>
+              </ul>
+            </div>
 
-          <div class="strategy-section">
-            <strong>Pairs:</strong>
-            <ul>
-              <li>Always split A's & 8's</li>
-              <li>Never split 10's & 5's</li>
-            </ul>
+            <div class="strategy-section">
+              <strong>vs Dealer 7-A (strong):</strong>
+              <ul>
+                <li>Hit on 12-16</li>
+              </ul>
+            </div>
+
+            <div class="strategy-section">
+              <strong>Pairs:</strong>
+              <ul>
+                <li>Always split A's & 8's</li>
+                <li>Never split 10's & 5's</li>
+              </ul>
+            </div>
           </div>
         </div>
       </aside>

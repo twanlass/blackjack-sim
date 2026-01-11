@@ -1,254 +1,100 @@
-* {
-  box-sizing: border-box;
+@import "tailwindcss";
+
+/* Base button styles */
+.btn-action {
+  @apply font-sans text-sm lg:text-base py-3 px-5 lg:py-2.5 lg:px-5
+         border-2 border-white rounded
+         cursor-pointer bg-black text-white
+         transition-colors duration-200
+         min-w-[70px] lg:min-w-0
+         touch-manipulation;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 16px;
-  background: #000;
-  color: #fff;
-  height: 100vh;
-  margin: 0;
-  padding: 15px;
-  overflow: hidden;
+.btn-action:hover:not(:disabled) {
+  @apply bg-gray-800;
 }
 
-#layout {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  max-width: 1000px;
-  height: 100%;
-  margin: 0 auto;
+.btn-action:disabled {
+  @apply opacity-40 cursor-not-allowed;
 }
 
-#app {
-  flex: 1;
-  max-width: 600px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+.btn-primary {
+  @apply font-sans text-sm lg:text-base py-3 px-5 lg:py-2.5 lg:px-5
+         border-2 border-white rounded
+         cursor-pointer bg-white text-black
+         transition-colors duration-200
+         min-w-[100px] lg:min-w-0
+         touch-manipulation;
 }
 
-#advisor {
-  width: 200px;
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-  height: fit-content;
-  flex-shrink: 0;
-  margin-top: 66px;
+.btn-primary:hover:not(:disabled) {
+  @apply bg-gray-300;
 }
 
-#advisor h3 {
-  margin: 0 0 10px 0;
-  font-size: 0.9em;
+.btn-primary:disabled {
+  @apply opacity-40 cursor-not-allowed;
 }
 
-#advice {
-  font-size: 1.5em;
-  font-weight: bold;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
-  background: #000;
-  border: 2px solid #fff;
+/* Recommended button animation */
+.btn-action.recommended,
+.btn-primary.recommended {
+  animation: pulse-shadow 1.5s infinite;
 }
 
-#advice-reason {
-  font-size: 0.85em;
-  line-height: 1.3;
+@keyframes pulse-shadow {
+  0%, 100% { box-shadow: 0 0 0 3px white; }
+  50% { box-shadow: 0 0 0 5px white; }
 }
 
-#strategy-reference {
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #333;
-  text-align: left;
-}
-
-#strategy-reference h4 {
-  margin: 0 0 10px 0;
-  font-size: 0.85em;
-  text-align: center;
-}
-
-.strategy-section {
-  margin-bottom: 8px;
-}
-
-.strategy-section strong {
-  font-size: 0.75em;
-  color: #999;
-  display: block;
-  margin-bottom: 2px;
-}
-
-.strategy-section ul {
-  margin: 0;
-  padding-left: 16px;
-  font-size: 0.75em;
-  line-height: 1.4;
-}
-
-.strategy-section li {
-  margin: 1px 0;
-}
-
-#header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 10px;
-}
-
-h1 {
-  margin: 0 0 5px 0;
-  font-size: 1.5em;
-  text-align: left;
-}
-
-#stats {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  font-size: 0.85em;
-}
-
-.stat {
-  color: #999;
-}
-
-.stat-value {
-  color: #fff;
-  font-weight: bold;
-}
-
-.stat-divider {
-  width: 1px;
-  background: #333;
-}
-
-h2 {
-  margin: 5px 0;
-  font-size: 1em;
-}
-
-#dealer-area,
-#player-area {
-  margin: 8px 0;
-  padding: 12px;
-  background: #305a31;
-  border: 1px solid #333;
-  border-radius: 8px;
-  height: 200px;
-}
-
-.cards {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
+/* Card display - ASCII art styling */
 .card-display {
-  font-family: 'Courier New', monospace;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1.2;
-  margin: 0;
-  color: #000;
-  background: #fff;
-  border-radius: 4px;
-  white-space: pre;
+  @apply font-mono text-[10px] sm:text-xs lg:text-base font-bold leading-tight whitespace-pre text-black bg-white rounded m-0;
 }
 
 .card-display.card-separated {
-  margin-right: 40px;
+  @apply mr-6 lg:mr-10;
 }
 
-#player-hands {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+/* Stats styling */
+.stat {
+  @apply text-gray-400;
 }
 
+.stat-value {
+  @apply text-white font-bold;
+}
+
+.stat-divider {
+  @apply w-px bg-gray-700;
+}
+
+/* Bankroll styling */
+.bankroll-amount {
+  @apply text-white font-bold text-base lg:text-lg;
+}
+
+/* Hand display */
 .hand {
-  padding: 8px;
+  @apply p-2;
 }
 
 .hand-score {
-  margin-top: 8px;
-  font-weight: bold;
-  font-size: 0.9em;
+  @apply mt-2 font-bold text-sm;
 }
 
-#message {
-  font-size: 1.2em;
-  font-weight: bold;
-  padding: 10px;
-  min-height: 40px;
+/* Strategy sections */
+.strategy-section {
+  @apply mb-2;
 }
 
-#bankroll {
-  font-size: 0.9em;
-  color: #999;
-  text-align: right;
+.strategy-section strong {
+  @apply text-xs text-gray-400 block mb-0.5;
 }
 
-.bankroll-amount {
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.1em;
+.strategy-section ul {
+  @apply m-0 pl-4 text-xs leading-relaxed;
 }
 
-#controls {
-  margin-top: 8px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-button {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 0.9em;
-  padding: 10px 20px;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  background: #000;
-  color: #fff;
-  transition: background 0.2s;
-}
-
-button:hover:not(:disabled) {
-  background: #222;
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-#deal-btn {
-  background: #fff;
-  color: #000;
-}
-
-#deal-btn:hover:not(:disabled) {
-  background: #ccc;
-}
-
-button.recommended {
-  box-shadow: 0 0 0 3px #fff;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 3px #fff; }
-  50% { box-shadow: 0 0 0 5px #fff; }
+.strategy-section li {
+  @apply my-0.5;
 }
